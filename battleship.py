@@ -5,7 +5,6 @@ they want to play for, and also the size of the board."""
 
 from random import randint #Import a function we'll need later.
 
-board = [] #Set the board to an empty list.
 
 def print_board(board):    #Prints the current status of the board
     for row in board:
@@ -25,6 +24,8 @@ if __name__=="__main__":
 
     board_size = int(raw_input("How big (N x N) do you want the board to be? Input N: "))
 
+    board = [] #Set the board to an empty list.
+
     for x in range(board_size):
         board.append(["O"] * board_size) #We fill the board with "O"s to represent spaces that haven't been guessed yet.
 
@@ -42,17 +43,18 @@ if __name__=="__main__":
         guess_row = int(raw_input("Guess Row: "))
         guess_col = int(raw_input("Guess Col: "))
     
-        if guess_row == ship_row and guess_col == ship_col:
+        if guess_row - 1 == ship_row and guess_col - 1 == ship_col:
             print "Congratulations! You sunk my battleship!"
             break
         else:
-            if (guess_row  < 0 or guess_row > board_size - 1) or (guess_col < 0 or guess_col > board_size - 1):
+            if (guess_row  < 1 or guess_row > board_size) or (guess_col < 1 or guess_col > board_size):
                 print "Oops, that's not even in the ocean."
-            elif(board[guess_row][guess_col] == "X"):
+            elif(board[guess_row - 1][guess_col - 1] == "X"):
                 print "You guessed that one already."
             else:
                 print "You missed my battleship!"
-                board[guess_row][guess_col] = "X"
+                board[guess_row - 1][guess_col - 1] = "X"
+
             print_board(board)
         if turn + 1 == turns:
             print "Game Over"
