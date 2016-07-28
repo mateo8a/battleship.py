@@ -17,6 +17,7 @@ def random_row(board):
 def random_col(board):
     return randint(0, len(board) - 1)
 
+#The following two lines were used for debugging purposes. They are now commented since they ruin the fun of the game.
 #print ship_row
 #print ship_col
 
